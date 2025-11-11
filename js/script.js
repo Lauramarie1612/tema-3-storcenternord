@@ -1,5 +1,77 @@
 "use strict";
 
+
+document.addEventListener("DOMContentLoaded", function () {
+  // DOM-elementer
+  const havfrueLukket = document.querySelector(".havfrue-lukket");
+  const havfrueAaben = document.querySelector(".havfrue-åben");
+  const boble = document.querySelector(".taleboble");
+  const bobleBillede = document.getElementById("taleboble-billede");
+
+  // Funktion der skifter havfruens mund
+  function havfrueSnak(start) {
+    if (start === true) {
+      havfrueLukket.style.display = "none";
+      havfrueAaben.style.display = "block";
+    } else {
+      havfrueLukket.style.display = "block";
+      havfrueAaben.style.display = "none";
+    }
+  }
+
+  // Liste over fisk -> className og hvilken billede-fil taleboblen skal vise
+  const fisk = [
+    { klasse: "starfisk", billede: "havfrue-img/infoseastar.png" },
+    { klasse: "nemo", billede: "havfrue-img/infonemo.png" },
+    { klasse: "dory", billede: "havfrue-img/infodory.png" },
+    { klasse: "ondfisk", billede: "havfrue-img/infomoorish.png" },
+    { klasse: "gulfisk", billede: "havfrue-img/infogulkirug.png" },
+    { klasse: "stribefisk", billede: "havfrue-img/infobluestriped.png" },
+    { klasse: "kuglefisklille", billede: "havfrue-img/infokugle.png" },
+  ];
+
+  // Tilføjer click-listener på hver fisk
+  fisk.forEach(function (item) {
+    const el = document.querySelector("." + item.klasse);
+    if (el) {
+      el.addEventListener("click", function () {
+        if (
+          boble.style.display === "block" &&
+          bobleBillede.src &&
+          bobleBillede.src.includes(item.billede)
+        ) {
+          boble.style.display = "none";
+          havfrueSnak(false);
+        } else {
+          bobleBillede.src = item.billede;
+          boble.style.display = "block";
+          havfrueSnak(true);
+        }
+      });
+    }
+  });
+
+  // Klik udenfor fisk + taleboble = skjul boble og luk mund
+  document.addEventListener("click", function (event) {
+    if (event.target.closest(".fish") || event.target.closest(".taleboble")) {
+      return;
+    } else {
+      boble.style.display = "none";
+      havfrueSnak(false);
+    }
+  });
+
+  // Sørg for at havfrue er lukket ved start
+  havfrueSnak(false);
+});
+
+
+
+
+
+
+
+
 // Hent DOM Elementer
 
 const getRedCar = document.getElementById("redCar");

@@ -1,5 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
+/* H A V F R U E  M U N D S T Y R I N G */
+.havfrue-åben{
+  display: none;
+
+}
+ 
+
+/* T A L E B O B L E N  E R  S K J U L T */
+.taleboble {
+  position: absolute;
+  top: 20%;   /* Du kan flytte den senere */
+  left: 55%;  /* Du kan flytte den senere */
+  width: 250px;
+  display: none;
+}
+
+
+.taleboble img {
+  width: 100%;
+}
+
+
+
+
+
+
+
+
 * {
   margin: 0;
   padding: 0;
@@ -63,12 +91,14 @@ body {
   position: absolute;
   inset: 0;
   z-index: 4;
-  pointer-events: none;
+  pointer-events: auto;
 }
 .fish img {
   position: absolute;
   width: clamp(60px, 8vw, 140px);
   height: auto;
+  pointer-events: auto;
+  cursor: pointer; 
 }
 
 /* Eksempelplaceringer — justér frit */
@@ -201,3 +231,13 @@ body {
     rotate: 5deg;
   }
 }
+
+
+
+
+
+
+
+
+
+
