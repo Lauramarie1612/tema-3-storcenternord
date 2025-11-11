@@ -112,3 +112,33 @@
     transform: translateX(calc(100vw + var(--off-car3))) rotateY(180deg);
   }
 }
+
+body {
+  margin: 0;
+  background: linear-gradient(#0099ff, #003366);
+  overflow: hidden;
+}
+
+.ocean {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.mermaid {
+  position: absolute;
+  bottom: 40%;
+  left: 0;
+  width: 150px;
+  animation: swim 6s ease-in-out infinite,
+    tail 1s ease-in-out infinite alternate;
+}
+/* lille hale bevægelse */
+@keyframes tail {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 5deg;
+  }
+}

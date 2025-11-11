@@ -39,3 +39,13 @@ if (sun && scene) {
     scene.classList.toggle("night");
   });
 }
+
+// lille bevægelse af havfrue
+const mermaid = document.querySelector(".mermaid");
+
+function randomMove() {
+  const randomY = Math.random() * 40 + 30; // procent af højden
+  mermaid.style.bottom = `${randomY}%`;
+}
+
+setInterval(randomMove, 3000); // flytter lidt op/ned hvert 3. sekund
