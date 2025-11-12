@@ -1,5 +1,72 @@
 "use strict";
 
+document.addEventListener("DOMContentLoaded", function () {
+  // DOM-elementer
+  const havfrue = document.getElementById("havfrue");
+  const havfrueLukket = document.querySelector(".havfrue-lukket");
+  const havfrueAaben = document.querySelector(".havfrue-åben");
+  const boble = document.querySelector(".taleboble");
+  const bobleBillede = document.getElementById("taleboble-billede");
+
+  // Funktion: Skift havfruens mund
+  function havfrueSnak(start) {
+    if (start === true) {
+      havfrue.style.display = "none";
+      havfrueAaben.style.display = "block";
+    } else {
+      havfrue.style.display = "block";
+      havfrueAaben.style.display = "none";
+    }
+  }
+
+  // Fiske-array
+  const fisk = [
+    { klasse: "starfish", billede: "img/infoseastar.png" },
+    { klasse: "fish1", billede: "img/infonemo.png" },
+    { klasse: "fish2", billede: "img/infodory.png" },
+    { klasse: "fish3", billede: "img/infokugle.png" },
+    { klasse: "fish4", billede: "img/infogulkirug.png" },
+    { klasse: "fish5", billede: "img/infomoorish.png" },
+    { klasse: "fish6", billede: "img/infobluestriped.png" },
+  ];
+
+  // Click-event for hver fisk
+  fisk.forEach(function (fiskObjekt) {
+    const element = document.getElementsByClassName(fiskObjekt.klasse)[0];
+    if (element) {
+      element.addEventListener("click", function (event) {
+        event.stopPropagation();
+        if (
+          boble.style.display === "block" &&
+          bobleBillede.src.includes(fiskObjekt.billede)
+        ) {
+          boble.style.display = "none";
+          havfrueSnak(false);
+        } else {
+          bobleBillede.src = fiskObjekt.billede;
+          boble.style.display = "block";
+          havfrueSnak(true);
+        }
+      });
+    }
+  });
+
+  // Klik udenfor = luk taleboble
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest(".fish") && !event.target.closest(".taleboble")) {
+      boble.style.display = "none";
+      havfrueSnak(false);
+    }
+  });
+
+  // Start med lukket mund
+  havfrueSnak(false);
+});
+
+
+
+
+
 // hent DOM elementer / fiskene
 const getNemo = document.getElementById("nemo"); // intet . grundet det er et id i html
 const getDory = document.getElementById("dory");

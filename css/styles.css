@@ -22,6 +22,30 @@
   --off-fish6: 200px;
 }
 
+
+/* H A V F R U E  M U N D S T Y R I N G */
+.havfrue-åben{
+  display: none;
+}
+.havfrue-lukket{
+  display: none;
+}
+
+/* T A L E B O B L E N  E R  S K J U L T */
+.taleboble {
+  position: absolute;
+  top: 20%; 
+  left: 55%;  
+  width: 250px;
+  display: none;
+}
+
+.taleboble img {
+  width: 100%;
+}
+
+
+
 /* ---------------------------------------------------------
    Global reset
 --------------------------------------------------------- */
@@ -97,7 +121,7 @@
 /* ---------------------------------------------------------
    Havfrue
 --------------------------------------------------------- */
-.girl {
+.havfrue {
   position: absolute;
   bottom: 0;
   left: 8vw;
