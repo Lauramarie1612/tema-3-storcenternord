@@ -1,0 +1,69 @@
+/* ---------------------------------------------------------
+   Baggrund (parallax)
+   - Brug vw i animationen: 0 → -100vw
+   - Sæt background-size til 100vw for at matche bevægelse
+--------------------------------------------------------- */
+.bg {
+  position: absolute;
+  inset: 0; /* fyld hele .scene */
+  background-image: url("../img/baggrund.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+}
+
+/* ---------------------------------------------------------
+   Kroaler
+--------------------------------------------------------- */
+/* Grøn koral nederst til venstre */
+.coral1 {
+  position: absolute;
+  bottom: -1vw;
+  left: 9vw;
+  width: 15vw;
+  z-index: 4; /* foran havfruen */
+}
+
+/* pink koral til højre for den grønne */
+.coral2 {
+  position: absolute;
+  bottom: -1vw;
+  left: -2vw;
+  width: 19vw;
+  z-index: 3;
+}
+
+/* orange koral til venstre */
+.coral3 {
+  position: absolute;
+  bottom: -1vw;
+  right: 15vw;
+  width: 12vw;
+  z-index: 3;
+}
+
+/* Big green koral til venstre for den orange koral */
+.coral4 {
+  position: absolute;
+  bottom: -1vw;
+  right: -1vw;
+  width: 20vw;
+  z-index: 6;
+}
+
+/* Spilleside-knap (ikon) */
+.homeBtn {
+  position: absolute;
+  bottom: 2vw;
+  right: 2vw;
+  width: 10vw;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  z-index: 10;
+}
+
+.homeBtn img {
+  width: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); /* blød skygge */
+}
