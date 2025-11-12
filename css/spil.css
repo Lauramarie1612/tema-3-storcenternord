@@ -67,3 +67,69 @@
   border-radius: 50%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); /* blød skygge */
 }
+
+/* pacman spillet */
+
+#dodger {
+  background-image: url(pacman-img/pacman-luk.png/);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40px;
+  position: absolute;
+  width: 40px;
+}
+#game {
+  background: lightblue;
+  height: 400px;
+  width: 400px;
+  margin: 50px auto;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 30px white(0, 0, 255, 0.2),
+    inset 0 0 50px lightblue(0, 0, 255, 0.1);
+  border: 2px solid #0066cc;
+  animation: borderGlow 4s infinite alternate;
+}
+/* Game title */
+.game-title {
+  font-size: 2.5rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+} /* Controls info */
+.controls-info {
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.controls-info p {
+  margin: 5px 0;
+} /* Footer */
+.footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: black;
+}
+
+#dodger {
+  background-image: url(pacman-img/pacman-luk.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  bottom: 180px;
+  left: 180px;
+}

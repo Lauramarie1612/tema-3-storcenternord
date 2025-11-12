@@ -16,6 +16,34 @@
       <h1 class="game-title">FISKE PACMAN</h1>
 
 
+<!-- Alt spil indhold og spilet i sin helhedd -->
+      <div id="game">
+        <div id="score">Score: <span id="points">0</span></div>
+        <div id="dodger"></div>
+        <div id="coin"></div>
+        <div id="superCoin"></div>
+        <div class="structure" id="wall1"></div>
+        <div class="structure" id="wall2"></div>
+        <div class="structure" id="wall3"></div>
+      </div>
+
+   <!-- lille info boks til kontroller -->
+      <div class="controls-info">
+        <p>Brug piletasterne for at styre Fiske pacman</p>
+        <p>Undgå væggene og saml mønterne!</p>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Storcenternord</p>
+    </div>
+
+    <!-- game over skærm når man dør -->
+    <div id="gameOverScreen" style="display: none">
+      <h1>Game Over!</h1>
+      <p>Din score: <span id="finalScore">0</span></p>
+      <button id="restartButton">Spil igen</button>
+    </div>
+
     
         <!-- koraler -->
         <img
@@ -48,5 +76,6 @@
         alt="Mermaid illustration on a circular play button linking to the game page; whimsical tone"
       />
     </a>
+    <script type="text/javascript" src="spil.js"></script>
   </body>
 </html>
