@@ -1,107 +1,157 @@
 "use strict";
 
-/* Grabs */
-const game = document.getElementById("game");
-const dodger = document.getElementById("dodger");
-const movementSound = document.getElementById("movementSound");
-const gameoverSound = document.getElementById("gameoverSound");
+// Fanger elementerne fra HTML
+const game = document.getElementById("game"); // hele spilområdet (baggrunden)
+const dodger = document.getElementById("dodger"); // selve fisken/pacman-figuren
 
-/* Audio: kræver typisk 1. bruger-interaktion før afspilning */
-let audioUnlocked = false;
-window.addEventListener("keydown", () => (audioUnlocked = true), {
-  once: true,
+// Sæt fisken i midten af skærmen når siden loader
+window.addEventListener("load", () => {
+  const game = document.getElementById("game");
+  const centerX = (game.clientWidth - dodger.offsetWidth) / 2;
+  const centerY = (game.clientHeight - dodger.offsetHeight) / 2;
+  dodger.style.left = centerX + "px";
+  dodger.style.bottom = centerY + "px";
 });
 
-/* Hjælpere */
-const STEP = 8;
+// Hvor mange pixels fisken flytter sig hver gang man trykker
+const step = 10;
 
+// Regner ud hvor langt man må bevæge sig i hver retning
 function maxX() {
-  return game.clientWidth - dodger.offsetWidth; // højre grænse
+  // bredden på spillet - bredden på fisken = højre grænse
+  return game.clientWidth - dodger.offsetWidth;
 }
 function maxY() {
-  return game.clientHeight - dodger.offsetHeight; // øvre grænse (målt som bottom)
-}
-function leftPx() {
-  return parseInt(dodger.style.left?.replace("px", "") || "0", 10);
-}
-function bottomPx() {
-  return parseInt(dodger.style.bottom?.replace("px", "") || "0", 10);
-}
-function setLeft(px) {
-  dodger.style.left = `${px}px`;
-}
-function setBottom(px) {
-  dodger.style.bottom = `${px}px`;
+  // højden på spillet - højden på fisken = øvre grænse
+  return game.clientHeight - dodger.offsetHeight;
 }
 
-/* Init: centrer vandret i #game */
-function initDodger() {
-  // Fjern evt. inline transform fra CSS-centrering og sæt præcis px
-  dodger.style.transform = "none";
-  const centerX = (game.clientWidth - dodger.offsetWidth) / 2;
-  setLeft(centerX);
-  setBottom(20);
-}
-window.addEventListener("load", initDodger);
-window.addEventListener("resize", initDodger);
-
-/* Bevægelse */
-function playMove() {
-  if (!audioUnlocked) return;
-  try {
-    movementSound.currentTime = 0;
-    movementSound.play();
-  } catch {}
-}
-function playGameover() {
-  if (!audioUnlocked) return;
-  try {
-    movementSound.pause();
-    movementSound.currentTime = 0;
-    gameoverSound.currentTime = 0;
-    gameoverSound.play();
-  } catch {}
-}
+/* ------------------------------------------
+   Alle bevægelsesfunktioner
+--------------------------------------------- */
 
 function moveDodgerLeft() {
-  const x = leftPx();
-  if (x > 0) setLeft(Math.max(0, x - STEP));
-  else playGameover();
-}
-function moveDodgerRight() {
-  const x = leftPx();
-  if (x < maxX()) setLeft(Math.min(maxX(), x + STEP));
-  else playGameover();
-}
-function moveDodgerUp() {
-  const y = bottomPx();
-  if (y < maxY()) setBottom(Math.min(maxY(), y + STEP));
-  else playGameover();
-}
-function moveDodgerDown() {
-  const y = bottomPx();
-  if (y > 0) setBottom(Math.max(0, y - STEP));
-  else playGameover();
+  // Finder ud af hvor langt til venstre fisken er
+  const left = parseInt(dodger.style.left) || 0;
+
+  // Hvis der stadig er plads, flyt til venstre
+  if (left > 0) {
+    dodger.style.left = left - step + "px";
+  } else {
+    // Ellers, hvis man rammer kanten → spil game over-lyd
+    playGameoverSound();
+  }
 }
 
-/* Controls */
-document.addEventListener("keydown", (e) => {
+function moveDodgerRight() {
+  const left = parseInt(dodger.style.left) || 0;
+
+  // Må ikke bevæge sig længere end højre kant
+  if (left < maxX()) {
+    dodger.style.left = left + step + "px";
+  } else {
+    playGameoverSound();
+  }
+}
+
+function moveDodgerUp() {
+  const bottom = parseInt(dodger.style.bottom) || 0;
+
+  // Må ikke gå højere end toppen af skærmen
+  if (bottom < maxY()) {
+    dodger.style.bottom = bottom + step + "px";
+  } else {
+    playGameoverSound();
+  }
+}
+
+function moveDodgerDown() {
+  const bottom = parseInt(dodger.style.bottom) || 0;
+
+  // Må ikke gå længere ned end bunden
+  if (bottom > 0) {
+    dodger.style.bottom = bottom - step + "px";
+  } else {
+    playGameoverSound();
+  }
+}
+
+/* ------------------------------------------
+   Når man trykker på piletasterne
+--------------------------------------------- */
+document.addEventListener("keydown", function (e) {
+  // Venstre pil
   if (e.key === "ArrowLeft") {
     moveDodgerLeft();
-    playMove();
-    dodger.style.transform = "scaleX(1)";
+    playSoundOnMovement();
+    dodger.style.transform = "scaleX(1)"; // spejlvend mod venstre
   }
+
+  // Højre pil
   if (e.key === "ArrowRight") {
     moveDodgerRight();
-    playMove();
-    dodger.style.transform = "scaleX(-1)";
+    playSoundOnMovement();
+    dodger.style.transform = "scaleX(-1)"; // spejlvend mod højre
   }
+
+  // Op
   if (e.key === "ArrowUp") {
     moveDodgerUp();
-    playMove();
+    playSoundOnMovement();
   }
+
+  // Ned
   if (e.key === "ArrowDown") {
     moveDodgerDown();
-    playMove();
+    playSoundOnMovement();
   }
 });
+
+/* ------------------------------------------
+   Lyd
+--------------------------------------------- */
+const movementSound = document.getElementById("movementSound");
+function playSoundOnMovement() {
+  // Nulstil lyden og spil den igen, så man hører et lille “klik” hver gang man flytter sig
+  movementSound.currentTime = 0;
+  movementSound.play();
+}
+
+const gameoverSound = document.getElementById("gameoverSound");
+function playGameoverSound() {
+  // Stop bevægelseslyd og spil game over-lyd
+  movementSound.currentTime = 0;
+  gameoverSound.play();
+}
+
+/* ------------------------------------------
+   Knapper på skærmen (mobil/tablet)
+--------------------------------------------- */
+const btnUp = document.getElementById("btnUp");
+const btnDown = document.getElementById("btnDown");
+const btnLeft = document.getElementById("btnLeft");
+const btnRight = document.getElementById("btnRight");
+
+// Klik-handlinger for knapperne
+if (btnLeft)
+  btnLeft.addEventListener("click", () => {
+    moveDodgerLeft();
+    dodger.style.transform = "scaleX(1)";
+    playSoundOnMovement();
+  });
+if (btnRight)
+  btnRight.addEventListener("click", () => {
+    moveDodgerRight();
+    dodger.style.transform = "scaleX(-1)";
+    playSoundOnMovement();
+  });
+if (btnUp)
+  btnUp.addEventListener("click", () => {
+    moveDodgerUp();
+    playSoundOnMovement();
+  });
+if (btnDown)
+  btnDown.addEventListener("click", () => {
+    moveDodgerDown();
+    playSoundOnMovement();
+  });

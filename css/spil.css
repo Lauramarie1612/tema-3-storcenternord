@@ -26,8 +26,8 @@ body {
 /* Pacman / dodger */
 #dodger {
   position: absolute;
-  width: 160px;
-  height: 80px;
+  width: 200px;
+  height: 120px;
   background-image: url("../pacman-img/pacman-åben.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -37,6 +37,7 @@ body {
   animation: nomnom 0.3s steps(2) infinite;
 }
 
+/* tilføjer animation til pacfisk */
 @keyframes nomnom {
   0% {
     background-image: url("../pacman-img/pacman-åben.png");
@@ -69,11 +70,6 @@ body {
   cursor: pointer;
   user-select: none;
   transition: transform 0.1s ease;
-}
-
-/* Tryk-animeret effekt */
-.ctrl-btn:active {
-  transform: scale(0.9);
 }
 
 /* Placering som pilekryds */
