@@ -12,10 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function havfrueSnak(start) {
     if (start === true) {
       havfrue.style.display = "none";
+      havfrueLukket.style.display = "none"
       havfrueAaben.style.display = "block";
     } else {
-      havfrue.style.display = "block";
+      havfrue.style.display = "none";
       havfrueAaben.style.display = "none";
+      havfrueLukket.style.display = "block";
     }
   }
 
