@@ -14,20 +14,19 @@
   --off-fish6: 200px;
 }
 
-
 /* H A V F R U E  M U N D S T Y R I N G */
-.havfrue-åben{
+.havfrue-åben {
   display: none;
 }
-.havfrue-lukket{
+.havfrue-lukket {
   display: none;
 }
 
 /* T A L E B O B L E N  E R  S K J U L T */
 .taleboble {
   position: absolute;
-  top: 25%; 
-  left: 30%;  
+  top: 25%;
+  left: 30%;
   width: 250px;
   display: none;
 }
@@ -35,8 +34,6 @@
 .taleboble img {
   width: 100%;
 }
-
-
 
 /* ---------------------------------------------------------
    Global reset
@@ -114,12 +111,27 @@
 --------------------------------------------------------- */
 .havfrue {
   position: absolute;
-  bottom: 0;
-  left: 2vw;
+  bottom: -2vw;
+  left: 13vw;
   width: 22vw;
-  z-index: 2; /* lag bag korallen */
+  z-index: 2;
+  transform-origin: 30% 80%;
+  animation: tail 1s ease-in-out infinite alternate;
 }
 
+@keyframes tail {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 5deg;
+  }
+}
+
+/* fjerner den anden havfrue??*/
+.havfrue1 {
+  display: none;
+}
 
 /* ---------------------------------------------------------
    Søstjerne
@@ -314,24 +326,6 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-*/
-
-/* Havfruen i nederste venstre hjørne af billedet */
-/*.mermaid {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: clamp(120px, 15vw, 230px);
-  z-index: 5;
-}
-.mermaid img {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-}
-
 @keyframes speak {
   0%,
   40%,
@@ -358,18 +352,3 @@ body {
   height: 100vh;
 }
 */
-.girl {
-  position: absolute;
-  animation: swim 6s ease-in-out infinite,
-    tail 1s ease-in-out infinite alternate;
-}
-
-/* lille hale bevægelse */
-@keyframes tail {
-  from {
-    rotate: 0deg;
-  }
-  to {
-    rotate: 5deg;
-  }
-}

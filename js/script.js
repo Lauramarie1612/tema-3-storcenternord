@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   // DOM-elementer
-  const havfrue = document.getElementById("havfrue");
+  const havfrue = document.getElementById("havfrue1");
   const havfrueLukket = document.querySelector(".havfrue-lukket");
   const havfrueAaben = document.querySelector(".havfrue-åben");
   const boble = document.querySelector(".taleboble");
@@ -10,12 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Funktion: Skift havfruens mund
   function havfrueSnak(start) {
-    if (start === true) {
-      havfrue.style.display = "none";
-      havfrueLukket.style.display = "none"
+    if (start) {
+      havfrueLukket.style.display = "none";
       havfrueAaben.style.display = "block";
     } else {
-      havfrue.style.display = "none";
       havfrueAaben.style.display = "none";
       havfrueLukket.style.display = "block";
     }
@@ -63,88 +61,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Start med lukket mund
   havfrueSnak(false);
+
+  // hent fisk fra HTML
+  const getNemo = document.getElementById("nemo");
+  const getDory = document.getElementById("dory");
+  const getKuglefisk = document.getElementById("kuglefisk");
+  const getYellowFish = document.getElementById("yellowFish");
+  const getMoorishl = document.getElementById("moorishl");
+  const getRensefisk = document.getElementById("rensefisk");
+  const getStarFish = document.getElementById("starfish");
+
+  // hent lydfiler
+  const soundBlob = new Audio("sound/blob.wav");
+  const kuglelyd = new Audio("sound/kuglefisk.mp3");
+  const nemolyd = new Audio("sound/klovnefisk.mp3");
+  const dorylyd = new Audio("sound/paletkirurg.mp3");
+  const gullyd = new Audio("sound/gulfisk.mp3");
+  const moolyd = new Audio("sound/moorishidol.mp3");
+  const stribelyd = new Audio("sound/rensefisk.mp3");
+  const starfishlyd = new Audio("sound/sostjerne.mp3");
+
+  // funktion som spiller begge lyde i rækkefølge
+  function spilLyde(taleLyd) {
+    soundBlob.currentTime = 0; // starter blob fra begyndelsen
+    soundBlob.play(); // spiller blob
+
+    // venter 300 millisekunder (0,3 sek), så blob når at lyde først
+    setTimeout(() => {
+      taleLyd.currentTime = 0; // starter havfruen fra begyndelsen
+      taleLyd.play(); // spiller havfruens stemme
+    }, 300);
+  }
+
+  // klik på fiskene = spil lyde
+  if (getNemo) getNemo.addEventListener("click", () => spilLyde(nemolyd));
+  if (getDory) getDory.addEventListener("click", () => spilLyde(dorylyd));
+  if (getKuglefisk)
+    getKuglefisk.addEventListener("click", () => spilLyde(kuglelyd));
+  if (getYellowFish)
+    getYellowFish.addEventListener("click", () => spilLyde(gullyd));
+  if (getMoorishl)
+    getMoorishl.addEventListener("click", () => spilLyde(moolyd));
+  if (getRensefisk)
+    getRensefisk.addEventListener("click", () => spilLyde(stribelyd));
 });
 
-
-
-
-
-// hent DOM elementer / fiskene
-const getNemo = document.getElementById("nemo"); // intet . grundet det er et id i html
-const getDory = document.getElementById("dory");
-const getKuglefisk = document.getElementById("kuglefisk");
-const getYellowFish = document.getElementById("yellowFish");
-const getMoorishl = document.getElementById("moorishl");
-const getRensefisk = document.getElementById("rensefisk");
-
-// henter lydfiler
-const soundBlob = new Audio();
-soundBlob.src = "sound/blob.wav";
-
-//havfrue tale
-const kuglelyd = new Audio();
-kuglelyd.src = "sound/kuglefisk.mp3";
-const nemolyd = new Audio();
-nemolyd.src = "sound/klovnefisk.mp3";
-const dorylyd = new Audio();
-dorylyd.src = "sound/paletkirurg.mp3";
-const gullyd = new Audio();
-gullyd.src = "sound/gulfisk.mp3";
-const moolyd = new Audio();
-moolyd.src = "sound/mooriskidol.mp3";
-const stribelyd = new Audio();
-stribelyd.src = "sound/rensefisk.mp3";
-const sostjernelyd = new Audio();
-sostjernelyd.src = "sound/sostjerne.mp3";
-
-// få lydene til at fungere når man trykker på fisk
-if (getNemo) {
-  getNemo.addEventListener("click", () => {
-    soundBlob.play();
-    nemolyd.play();
-    soundBlob.currentTime = 0;
-  });
-}
-
-if (getDory) {
-  getDory.addEventListener("click", () => {
-    soundBlob.play();
-    dorylyd.play();
-    soundBlob.currentTime = 0;
-  });
-}
-
-if (getKuglefisk) {
-  getKuglefisk.addEventListener("click", () => {
-    soundBlob.play();
-    kuglelyd.play();
-    soundBlob.currentTime = 0;
-  });
-}
-
-if (getYellowFish) {
-  getYellowFish.addEventListener("click", () => {
-    soundBlob.play();
-    gullyd.play();
-    soundBlob.currentTime = 0;
-  });
-}
-
-if (getMoorishl) {
-  getMoorishl.addEventListener("click", () => {
-    soundBlob.play();
-    moolyd.play();
-    soundBlob.currentTime = 0;
-  });
-}
-
-if (getRensefisk) {
-  getRensefisk.addEventListener("click", () => {
-    soundBlob.play();
-    stribelyd.play();
-    soundBlob.currentTime = 0;
-  });
-}
+//???????
 
 // document.addEventListener("DOMContentLoaded", function () {
 // DOM-elementer
@@ -198,53 +160,3 @@ if (getRensefisk) {
 // Sørg for at havfrue er lukket ved start
 //   havfrueSnak(false);
 // });
-
-// Hent DOM Elementer
-
-const getRedCar = document.getElementById("redCar");
-const getPoliceCar = document.getElementById("policeCar");
-const getBlueCar = document.getElementById("blueCar");
-const sun = document.querySelector(".sun");
-const scene = document.querySelector(".scene");
-
-// Opretter lydObjekter
-const soundRedCar = new Audio();
-soundRedCar.src = "../sound/red-car-horn.wav";
-const soundPoliceCar = new Audio();
-soundPoliceCar.src = "../sound/police-car-sound.wav";
-const soundBlueCar = new Audio();
-soundBlueCar.src = "../sound/blue-car-sound.wav";
-
-if (getRedCar) {
-  getRedCar.addEventListener("click", () => {
-    soundRedCar.play();
-  });
-}
-
-if (getBlueCar) {
-  getBlueCar.addEventListener("click", () => {
-    soundBlueCar.play();
-  });
-}
-
-if (getPoliceCar) {
-  getPoliceCar.addEventListener("click", () => {
-    soundPoliceCar.play();
-  });
-}
-
-if (sun && scene) {
-  sun.addEventListener("click", () => {
-    scene.classList.toggle("night");
-  });
-}
-
-// lille bevægelse af havfrue
-const mermaid = document.getElementById("mermaid");
-
-function randomMove() {
-  const randomY = Math.random() * 40 + 30; // procent af højden
-  mermaid.style.bottom = `${randomY}%`;
-}
-
-setInterval(randomMove, 3000); // flytter lidt op/ned hvert 3. sekund
