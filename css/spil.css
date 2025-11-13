@@ -164,7 +164,7 @@ body {
   position: absolute;
   width: 40px;
   height: 40px;
-  background-image: url("../pacman-img/upbtn.png"); /* byt evt. til dit eget billede */
+  background-image: url("../pacman-img/Ellipse\ 73.png"); /* byt evt. til dit eget billede */
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 5;
@@ -173,9 +173,9 @@ body {
 /* Fjendefisk */
 .enemy {
   position: absolute;
-  width: 140px;
-  height: 80px;
-  background-image: url("../pacman-img/pacman-luk.png"); /* byt evt. til dit eget billede */
+  width: 200px;
+  height: 120px;
+  background-image: url("../pacman-img/fishdevil.png"); /* byt evt. til dit eget billede */
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 8;
