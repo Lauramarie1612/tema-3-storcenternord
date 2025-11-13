@@ -86,6 +86,15 @@ function checkCollisions() {
    Mad & fjendefisk
 --------------------------------------------- */
 
+function spawnFood(x, y) {
+  const food = document.createElement("div");
+  food.classList.add("food");
+  food.style.left = x + "px";
+  food.style.bottom = y + "px";
+  game.appendChild(food);
+  foods.push(food);
+}
+
 function spawnNewFoodBatch() {
   foods = []; // reset array
 
