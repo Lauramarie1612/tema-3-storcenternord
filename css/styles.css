@@ -29,10 +29,12 @@
   left: 33%;
   width: 250px;
   display: none;
+  z-index: 6;
 }
 
 .taleboble img {
   width: 100%;
+  z-index: 6;
 }
 
 /* ---------------------------------------------------------
@@ -76,7 +78,7 @@
   bottom: -1vw;
   left: 9vw;
   width: 15vw;
-  z-index: 4; /* foran havfruen */
+  z-index: 7; /* foran havfruen */
 }
 
 /* pink koral til højre for den grønne */
@@ -85,7 +87,7 @@
   bottom: -1vw;
   left: -2vw;
   width: 19vw;
-  z-index: 3;
+  z-index: 4;
 }
 
 /* orange koral til venstre */
@@ -94,7 +96,7 @@
   bottom: -1vw;
   right: 15vw;
   width: 12vw;
-  z-index: 3;
+  z-index: 5;
 }
 
 /* Big green koral til venstre for den orange koral */
@@ -104,6 +106,36 @@
   right: -1vw;
   width: 20vw;
   z-index: 6;
+}
+
+/* kiste lukket*/
+.kiste1 {
+  position: absolute;
+  bottom: 7vw;
+  right: 10vw;
+  width: 20vw;
+  z-index: 3;
+}
+
+/* kiste åben */
+.kiste2 {
+  position: absolute;
+  bottom: 7vw;
+  right: 10vw;
+  width: 20vw;
+  z-index: 3;
+}
+
+.kiste1,
+.kiste2 {
+  width: 300px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+/* Start med kun at vise den lukkede kiste */
+#abenkiste {
+  display: none;
 }
 
 /* ---------------------------------------------------------
@@ -155,7 +187,7 @@
   bottom: 50.8vh;
   width: var(--fish-w);
   max-width: 28vw;
-  z-index: 5; /* lag af bilerne */
+  z-index: 4; /* lag af bilerne */
   left: calc(
     -1 * var(--off-fish1)
   ); /*beregner hvor bilen starter uden for skærmen */
@@ -179,7 +211,7 @@
   width: var(--fish-w);
   max-width: 28vw;
   right: calc(-1 * var(--off-fish2));
-  z-index: 0; /* lag af bilerne */
+  z-index: 3; /* lag af bilerne */
   animation: fish2 6.3s linear infinite;
   cursor: pointer;
 }

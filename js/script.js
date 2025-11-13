@@ -108,6 +108,19 @@ document.addEventListener("DOMContentLoaded", function () {
     getStarFish.addEventListener("click", () => spilLyde(starfishlyd));
 });
 
+const lukketKiste = document.getElementById("lukketkiste");
+const aabenKiste = document.getElementById("abenkiste");
+
+lukketKiste.addEventListener("click", () => {
+  lukketKiste.style.display = "none";
+  aabenKiste.style.display = "block";
+});
+
+aabenKiste.addEventListener("click", () => {
+  aabenKiste.style.display = "none";
+  lukketKiste.style.display = "block";
+});
+
 //???????
 
 // document.addEventListener("DOMContentLoaded", function () {
