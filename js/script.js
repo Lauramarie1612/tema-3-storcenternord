@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const moolyd = new Audio("sound/moorishidol.mp3");
   const stribelyd = new Audio("sound/rensefisk.mp3");
   const starfishlyd = new Audio("sound/sostjerne.mp3");
+  const soundAngel = new Audio("sound/angels.wav");
 
   // funktion som spiller begge lyde i rækkefølge
   function spilLyde(taleLyd) {
@@ -106,6 +107,9 @@ document.addEventListener("DOMContentLoaded", function () {
     getRensefisk.addEventListener("click", () => spilLyde(stribelyd));
   if (getStarFish)
     getStarFish.addEventListener("click", () => spilLyde(starfishlyd));
+  if (lukketKiste)
+    lukketKiste.addEventListener("click", () => spilLyde(soundAngel));
+  if (aabenKiste) aabenKiste.addEventListener("click", () => spilLyde());
 });
 
 const lukketKiste = document.getElementById("lukketkiste");
@@ -120,58 +124,3 @@ aabenKiste.addEventListener("click", () => {
   aabenKiste.style.display = "none";
   lukketKiste.style.display = "block";
 });
-
-//???????
-
-// document.addEventListener("DOMContentLoaded", function () {
-// DOM-elementer
-// const havfrueLukket = document.querySelector(".havfrue-lukket");
-// const havfrueAaben = document.querySelector(".havfrue-åben");
-// const boble = document.querySelector(".taleboble");
-// const bobleBillede = document.getElementById("taleboble-billede");
-
-// Funktion der skifter havfruens mund
-// function havfrueSnak(start) {
-//   if (start === true) {
-//     havfrueLukket.style.display = "none";
-//     havfrueAaben.style.display = "block";
-//   } else {
-//     havfrueLukket.style.display = "block";
-//     havfrueAaben.style.display = "none";
-//   }
-// }
-
-// Tilføjer click-listener på hver fisk
-// fisk.forEach(function (fiskObjekt) {
-//   const elem = document.getElementsByClassName(fiskObjekt.klasse)[0];
-//   if (elem) {
-//     elem.addEventListener("click", function () {
-//       if (
-//         boble.style.display === "block" &&
-//         bobleBillede.src &&
-//         bobleBillede.src.includes(fiskObjekt.billede)
-//       ) {
-//         boble.style.display = "none";
-//         havfrueSnak(false);
-//       } else {
-//         bobleBillede.src = fiskObjekt.billede;
-//         boble.style.display = "block";
-//         havfrueSnak(true);
-//       }
-//     });
-//   }
-// });
-
-// Klik udenfor fisk + taleboble = skjul boble og luk mund
-// document.addEventListener("click", function (event) {
-//   if (event.target.closest(".fish") || event.target.closest(".taleboble")) {
-//     return;
-//   } else {
-//     boble.style.display = "none";
-//     havfrueSnak(false);
-//   }
-// });
-
-// Sørg for at havfrue er lukket ved start
-//   havfrueSnak(false);
-// });
